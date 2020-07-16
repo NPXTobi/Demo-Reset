@@ -1,3 +1,4 @@
+# CFW Needed 
 # Demo-Reset
 This app resets the democounter of the 3ds
 The LED shows whether it was successfully completed or not
