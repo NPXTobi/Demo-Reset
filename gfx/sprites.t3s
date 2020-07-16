@@ -1,0 +1,4 @@
+--atlas -f rgba -z auto
+icon.png
+bgrtop.png
+bgrbo.png
