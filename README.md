@@ -1,4 +1,4 @@
-# CFW Needed 
+# CFW Needed ![Github latest downloads](https://img.shields.io/github/downloads/NPXTobi/Demo-Reset/total.svg)
 # Demo-Reset
 This app resets the democounter of the 3ds
 The LED shows whether it was successfully completed or not
