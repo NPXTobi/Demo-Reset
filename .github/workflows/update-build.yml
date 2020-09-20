@@ -36,7 +36,7 @@ jobs:
         run: |
           make
 
-          sudo mv tools-linux/make_cia /usr/local/bin
+          sudo mv make_cia /usr/local/bin
           make cia
 
           mkdir -p ~/artifacts
