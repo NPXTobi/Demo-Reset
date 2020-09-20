@@ -33,12 +33,13 @@ include $(DEVKITARM)/3ds_rules
 #---------------------------------------------------------------------------------
 TARGET          := $(notdir $(CURDIR))
 BUILD           := build
-SOURCES         := source source/menus source/ftp
+SOURCES         := $(M3D) source source/menus source/ftp
 DATA            := data
-INCLUDES        := include include/menus include/ftp
+INCLUDES        := $(M3D) include include/menus include/ftp
 GRAPHICS        := gfx
 ROMFS           := romfs
 GFXBUILD        := $(ROMFS)/gfx
+M3D             := m3d/inc m3d/src
 
 APP_TITLE       := Demo-Reset
 APP_DESCRIPTION := Reset Democount!
@@ -77,7 +78,7 @@ CXXFLAGS	:= $(CFLAGS) -fno-rtti -fno-exceptions -std=gnu++11
 ASFLAGS	:=	-g $(ARCH)
 LDFLAGS	=	-specs=3dsx.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
 
-LIBS	:=  -lm3dia  \
+LIBS	:=   
 			-lcitro2d -lcitro3d -lctru 
 
 #---------------------------------------------------------------------------------
