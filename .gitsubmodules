@@ -1,0 +1,3 @@
+[submodule "m3d"]
+	path = m3d
+	url = https://github.com/m3diaLib-Team/m3diaLib-CTR.git
