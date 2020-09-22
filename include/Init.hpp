@@ -1,7 +1,7 @@
 #include <dirent.h>
 #include <3ds.h>
 #include <iostream>
-#include <m3dia.hpp>
+#include "m3dia.hpp"
 #include <citro2d.h>
 #include <citro3d.h>
 #include <fstream>
