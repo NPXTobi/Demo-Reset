@@ -1,15 +1,10 @@
-
-name: Build Demo-Reset 
+name: Build Demo-Reset
 
 on:
   push:
     branches-ignore: [translation]
-    paths-ignore:
-      - 'README.md'
   pull_request:
     branches: ["*"]
-    paths-ignore:
-      - 'README.md'
   release:
     types: [created]
 
@@ -30,21 +25,29 @@ jobs:
         uses: actions/checkout@v1
         with:
           submodules: recursive
- 
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install p7zip-full -y
+          curl -L https://github.com/Steveice10/bannertool/releases/download/1.1.0/bannertool.zip -o bannertool.zip
+          sudo 7z e bannertool.zip linux-x86_64/bannertool
+          sudo chmod +x bannertool
+          mv bannertool /usr/local/bin
+          rm bannertool.zip
+          curl -L https://github.com/3DSGuy/Project_CTR/releases/download/makerom-v0.17/makerom-v0.17-ubuntu_x86_64.zip -o makerom-v0.17-ubuntu_x86_64.zip
+          sudo 7z e makerom-v0.17-ubuntu_x86_64.zip
+          sudo chmod +x makerom
+          mv makerom /usr/local/bin
+          rm makerom-v0.17-ubuntu_x86_64.zip
       - name: Build
         id: build
         run: |
           make
-
-          sudo mv make_cia /usr/local/bin
-          make cia
-
           mkdir -p ~/artifacts
-          cp pkmn-chest.* ~/artifacts
-
+          cp Demo-Reset.3dsx ~/artifacts
+          cp Demo-Reset.cia ~/artifacts
           echo ::set-output name=commit_tag::$(git describe --abbrev=0 --tags)
           echo ::set-output name=commit_hash::$(git log --format=%h -1)
-
           # Webhook info
           echo ::set-output name=author_name::$(git log -1 "$GITHUB_SHA" --pretty="%aN")
           echo ::set-output name=committer_name::$(git log -1 "$GITHUB_SHA" --pretty="%cN")
@@ -83,34 +86,42 @@ jobs:
         if: ${{ startsWith(github.ref, 'refs/tags') }}
         run: |
           ID=$(jq --raw-output '.release.id' $GITHUB_EVENT_PATH)
-
           for file in ${{ github.workspace }}/build/*; do
             AUTH_HEADER="Authorization: token ${{ secrets.GITHUB_TOKEN }}"
             CONTENT_LENGTH="Content-Length: $(stat -c%s $file)"
             CONTENT_TYPE="Content-Type: application/7z-x-compressed"
             UPLOAD_URL="https://uploads.github.com/repos/${{ github.repository }}/releases/$ID/assets?name=$(basename $file)"
-
             curl -XPOST -H "$AUTH_HEADER" -H "$CONTENT_LENGTH" -H "$CONTENT_TYPE" --upload-file "$file" "$UPLOAD_URL"
           done
-     
-      - name: Release to NPXTobi/update-builds 
+      - name: Commit and push to NPXTobi/update-builds
+        id: commit
         run: |
-          AUTH_HEADER="Authorization: token ${{ secrets.TWLBOT_TOKEN }}"
+          CURRENT_DATE=$(date +"%Y%m%d-%H%M%S")
+          echo ::set-output name=current_date::$CURRENT_DATE
+          git config --global user.email "nintenplayid7@gmail.com"
+          git config --global user.name "Tobi-D7"
+          git clone --depth 1 https://${{ secrets.TOKEN }}@github.com/NPI-D7/nightlys.git
+          mkdir -p nightlys/builds/Demo-Reset/
+          cd nightlys/builds/Demo-Reset/
+          qrencode -o Test.png https://github.com/NPI-D7/nightlys/raw/v$CURRENT_DATE/builds/Demo-Reset/Demo-Reset.cia
+          qrencode -o Test-release.png https://github.com/NPI-D7/nightlys/releases/download/$COMMIT_TAG/Demo-Reset.cia
+          cp ${{ github.workspace }}/build/* .
+          git stage .
+          git commit -m "Demo-Reset | $COMMIT_HASH"
+          git tag v$CURRENT_DATE
+          git push origin master v$CURRENT_DATE
+      - name: Release to NPXTobi/update-builds
+        run: |
+          AUTH_HEADER="Authorization: token ${{ secrets.TOKEN }}"
           CONTENT_TYPE="Content-Type: application/json"
-          API_URL="https://api.github.com/repos/NPXTobi/update-builds/releases"
-          RELEASE_INFO="{\"tag_name\": \"v${{ steps.commit.outputs.current_date }}\", \"name\": \"Demo-Reset| $COMMIT_HASH\", \"body\": \"$AUTHOR_NAME - $COMMIT_MESSAGE\", \"prerelease\": true}"
-
+          API_URL="https://api.github.com/repos/NPI-D7/nightlys/releases"
+          RELEASE_INFO="{\"tag_name\": \"v${{ steps.commit.outputs.current_date }}\", \"name\": \"Demo-Reset | $COMMIT_HASH\", \"body\": \"$AUTHOR_NAME - $COMMIT_MESSAGE\", \"prerelease\": true}"
           RESPONSE=$(curl -XPOST -H "$AUTH_HEADER" -H "$CONTENT_TYPE" "$API_URL" -d "$RELEASE_INFO")
-
           ID=$(echo $RESPONSE | jq --raw-output '.id')
-
           for file in ${{ github.workspace }}/build/*; do
-            AUTH_HEADER="Authorization: token ${{ secrets.TWLBOT_TOKEN }}"
+            AUTH_HEADER="Authorization: token ${{ secrets.TOKEN }}"
             CONTENT_LENGTH="Content-Length: $(stat -c%s $file)"
             CONTENT_TYPE="Content-Type: application/7z-x-compressed"
-            UPLOAD_URL="https://uploads.github.com/repos/NPXTobi/update-builds/releases/$ID/assets?name=$(basename $file)"
-
+            UPLOAD_URL="https://uploads.github.com/repos/NPI-D7/nigtlys/releases/$ID/assets?name=$(basename $file)"
             curl -XPOST -H "$AUTH_HEADER" -H "$CONTENT_LENGTH" -H "$CONTENT_TYPE" --upload-file "$file" "$UPLOAD_URL"
           done
-
-  
