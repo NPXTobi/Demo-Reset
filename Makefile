@@ -39,7 +39,7 @@ INCLUDES        := $(M3D) include include/menus include/ftp
 GRAPHICS        := gfx
 ROMFS           := romfs
 GFXBUILD        := $(ROMFS)/gfx
-M3D             := m3d/inc m3d/src
+M3D             := m3d/inc m3d/src m3d/src/audio m3d/src/core m3d/src/graphics m3d/src/input m3d/src/private m3d/src/utils
 
 APP_TITLE       := Demo-Reset
 APP_DESCRIPTION := Reset Democount!
