@@ -33,12 +33,13 @@ include $(DEVKITARM)/3ds_rules
 #---------------------------------------------------------------------------------
 TARGET          := $(notdir $(CURDIR))
 BUILD           := build
-SOURCES         := source 
+SOURCES         := source $(UNIVCORE) 
 DATA            := data
-INCLUDES        :=  include 
+INCLUDES        :=  include $(UNIVCORE)
 GRAPHICS        := gfx
 ROMFS           := romfs
 GFXBUILD        := $(ROMFS)/gfx
+UNIVCORE        := Universal-Core
 
 APP_TITLE       := Demo-Reset
 APP_DESCRIPTION := Reset Democount!
