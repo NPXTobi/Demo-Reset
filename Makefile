@@ -71,7 +71,7 @@ CFLAGS	:=	-g -Wall -O3 -mword-relocations \
 	        -DGITVERSION="\"${GITVERSION}\"" \
 		$(ARCH)
 
-CFLAGS	+=	$(INCLUDE) -DARM11 -D_3DS
+CFLAGS	+=	$(INCLUDE) -DARM11 -D_3DS -D_GNU_SOURCE=1 
 
 CXXFLAGS	:= $(CFLAGS) -fno-rtti -fno-exceptions -std=gnu++17
 
