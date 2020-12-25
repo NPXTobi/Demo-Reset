@@ -87,10 +87,10 @@ ROMFS		:=	romfs
 GFXBUILD	:=	$(ROMFS)/gfx
 APP_AUTHOR	:=	Tobi
 APP_DESCRIPTION :=      Apploader
-ICON		:=	app/icon.png
-BNR_IMAGE	:=  app/banner.png
-BNR_AUDIO	:=	app/BannerAudio.wav
-RSF_FILE	:=	app/build-cia.rsf
+ICON		:=	cia/icon.png
+BNR_IMAGE	:=  cia/banner.png
+BNR_AUDIO	:=	cia/BannerAudio.wav
+RSF_FILE	:=	cia/cia.rsf
 MUSIC       :=  test test/decoder
 
 #---------------------------------------------------------------------------------
