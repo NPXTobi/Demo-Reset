@@ -78,20 +78,20 @@ TARGET		:=	Demo-Reset
 BUILD		:=	build
 UNIVCORE	:= 	Universal-Core
 
-SOURCES		:=	mp3p test test/decoder $(UNIVCORE) source source/gui source/screens source/core/management source/utils source/core/management/nand
+SOURCES		:=	$(UNIVCORE) source source/gui source/screens  source/utils 
 DATA		:=	data
-INCLUDES	:= test mp3p test/decoder $(UNIVCORE) include include/gui include/screens include/core/management include/utils include/core/management/nand
+INCLUDES	:=  $(UNIVCORE) include include/gui include/screens  include/utils 
 GRAPHICS	:=	assets/gfx
 #GFXBUILD	:=	$(BUILD)
 ROMFS		:=	romfs
 GFXBUILD	:=	$(ROMFS)/gfx
-APP_AUTHOR	:=	Tobi
+APP_AUTHOR	:=	NPI-D7
 APP_DESCRIPTION :=      Apploader
 ICON		:=	cia/icon.png
 BNR_IMAGE	:=  cia/banner.png
 BNR_AUDIO	:=	cia/BannerAudio.wav
 RSF_FILE	:=	cia/cia.rsf
-MUSIC       :=  test test/decoder
+
 
 #---------------------------------------------------------------------------------
 # options for code generation
