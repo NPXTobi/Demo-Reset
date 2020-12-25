@@ -1,5 +1,6 @@
-#---------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------
 .SUFFIXES:
+#nicetest
 #---------------------------------------------------------------------------------
 
 ifeq ($(strip $(DEVKITARM)),)
@@ -32,7 +33,7 @@ include $(DEVKITARM)/3ds_rules
 #     - <libctru folder>/default_icon.png
 
 #---------------------------------------------------------------------------------
-# External toolslol
+# External tools
 #---------------------------------------------------------------------------------
 ifeq ($(OS),Windows_NT)
 MAKEROM 	?= ../makerom.exe
@@ -74,23 +75,23 @@ endif
 
 #---------------------------------------------------------------------------------
 TARGET		:=	Demo-Reset
-
 BUILD		:=	build
 UNIVCORE	:= 	Universal-Core
 
-SOURCES		:= $(UNIVCORE) source
+SOURCES		:=	mp3p test test/decoder $(UNIVCORE) source source/gui source/screens source/core/management source/utils source/core/management/nand
 DATA		:=	data
-INCLUDES	:= $(UNIVCORE) include
-GRAPHICS	:=	gfx
+INCLUDES	:= test mp3p test/decoder $(UNIVCORE) include include/gui include/screens include/core/management include/utils include/core/management/nand
+GRAPHICS	:=	assets/gfx
 #GFXBUILD	:=	$(BUILD)
 ROMFS		:=	romfs
 GFXBUILD	:=	$(ROMFS)/gfx
-APP_AUTHOR	:=	NPI-D7
-APP_DESCRIPTION :=      Reset Democounter. 
-ICON		:=	cia/icon.png
-BNR_IMAGE	:=  cia/banner.png
-BNR_AUDIO	:=	cia/BannerAudio.wav
-RSF_FILE	:=	cia/cia.rsf
+APP_AUTHOR	:=	Tobi
+APP_DESCRIPTION :=      Apploader
+ICON		:=	app/icon.png
+BNR_IMAGE	:=  app/banner.png
+BNR_AUDIO	:=	app/BannerAudio.wav
+RSF_FILE	:=	app/build-cia.rsf
+MUSIC       :=  test test/decoder
 
 #---------------------------------------------------------------------------------
 # options for code generation
@@ -101,7 +102,6 @@ CFLAGS	:=	-g -Wall -Wno-psabi -O2 -mword-relocations \
 			-DV_STRING=\"$(GIT_VER)\" \
 			-fomit-frame-pointer -ffunction-sections \
 			$(ARCH)
-	
 
 CFLAGS	+=	$(INCLUDE) -DARM11 -D_3DS -D_GNU_SOURCE=1
 
@@ -110,8 +110,7 @@ CXXFLAGS	:= $(CFLAGS) -fno-rtti -fno-exceptions -std=gnu++17
 ASFLAGS	:=	-g $(ARCH)
 LDFLAGS	=	-specs=3dsx.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
 
-LIBS	:= -lcurl -lmbedtls -lmbedx509 -lmbedcrypto -larchive -lbz2 -llzma -lz \
-			-lcitro2d -lcitro3d -lctru -lm 
+LIBS	:= -lcurl -lmbedtls -lmbedx509 -lmbedcrypto -larchive -lbz2 -llzma -lm -lz -lcitro2d -lcitro3d -lSDL_mixer -lSDL -lmpg123 -lvorbisidec -logg -lmikmod -lmad -lctru -lstdc++
 
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
@@ -274,7 +273,7 @@ $(OUTPUT).cia	:	$(OUTPUT).elf $(OUTPUT).smdh
 	@$(bin2o)
 
 #---------------------------------------------------------------------------------
-# rules for assembling GPU shadersj
+# rules for assembling GPU shaders
 #---------------------------------------------------------------------------------
 define shader-as
 	$(eval CURBIN := $*.shbin)
