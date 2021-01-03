@@ -1,4 +1,4 @@
-#--------------------------------------------------------------------------------
+#---------------------------------------------------------------------------------
 .SUFFIXES:
 #nicetest
 #---------------------------------------------------------------------------------
@@ -58,19 +58,19 @@ endif
 ifneq ($(shell echo $(shell git describe --tags) | head -c 2 | tail -c 1),)
 VERSION_MAJOR := $(shell echo $(shell git describe --tags) | head -c 2 | tail -c 1)
 else
-VERSION_MAJOR := 1
+VERSION_MAJOR := 0
 endif
 
 ifneq ($(shell echo $(shell git describe --tags) | head -c 4 | tail -c 1),)
 VERSION_MINOR := $(shell echo $(shell git describe --tags) | head -c 4 | tail -c 1)
 else
-VERSION_MINOR := 1
+VERSION_MINOR := 0
 endif
 
 ifneq ($(shell echo $(shell git describe --tags) | head -c 6 | tail -c 1),)
 VERSION_MICRO := $(shell echo $(shell git describe --tags) | head -c 6 | tail -c 1)
 else
-VERSION_MICRO := 1
+VERSION_MICRO := 0
 endif
 
 #---------------------------------------------------------------------------------
@@ -78,18 +78,18 @@ TARGET		:=	Demo-Reset
 BUILD		:=	build
 UNIVCORE	:= 	Universal-Core
 
-SOURCES		:=	$(UNIVCORE) source source/gui source/screens  source/utils 
+SOURCES		:=	 $(UNIVCORE) source source/gui source/screens source/core/management source/utils source/core/management/nand
 DATA		:=	data
-INCLUDES	:=  $(UNIVCORE) include include/gui include/screens  include/utils 
+INCLUDES	:= $(UNIVCORE) include include/gui include/screens include/core/management include/utils include/core/management/nand
 GRAPHICS	:=	assets/gfx
 #GFXBUILD	:=	$(BUILD)
 ROMFS		:=	romfs
 GFXBUILD	:=	$(ROMFS)/gfx
-APP_AUTHOR	:=	NPI-D7
+APP_AUTHOR	:=	Tobi
 APP_DESCRIPTION :=      Apploader
 ICON		:=	cia/icon.png
 BNR_IMAGE	:=  cia/banner.png
-BNR_AUDIO	:=	cia/BannerAudio.wav
+BNR_AUDIO	:=	cia/banner.wav
 RSF_FILE	:=	cia/cia.rsf
 
 
@@ -251,7 +251,7 @@ all: $(OUTPUT).cia $(OUTPUT).elf $(OUTPUT).3dsx
 $(OUTPUT).elf	:	$(OFILES)
 
 $(OUTPUT).cia	:	$(OUTPUT).elf $(OUTPUT).smdh
-	$(BANNERTOOL) makebanner -i "../cia/banner.png" -a "../cia/BannerAudio.wav" -o "../cia/banner.bin"
+	$(BANNERTOOL) makebanner -i "../cia/banner.png" -a "../cia/banner.wav" -o "../cia/banner.bin"
 
 	$(BANNERTOOL) makesmdh -i "../cia/icon.png" -s "$(TARGET)" -l "$(APP_DESCRIPTION)" -p "$(APP_AUTHOR)" -o "../cia/icon.bin"
 
@@ -309,5 +309,3 @@ endef
 #---------------------------------------------------------------------------------------
 endif
 #---------------------------------------------------------------------------------------
-
-
