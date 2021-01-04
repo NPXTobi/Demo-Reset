@@ -5,5 +5,5 @@
 #include "gfx.hpp"
 
 #include <3ds.h>
-#include <citro2d.>
+#include <citro2d.h>
 #include <citro3d.h>
