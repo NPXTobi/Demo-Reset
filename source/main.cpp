@@ -1,10 +1,7 @@
 
-#include "Init.hpp"
+#include "app.hpp"
 #include "functions.hpp"
 
 int main() {
- // initialize everything
-
-
-    return 0;
+    app::MainLoop();
 }
