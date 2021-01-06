@@ -1,6 +1,6 @@
 #include "common.hpp"
 
-class ResetMenu
+class ResetMenu : public Screen
 {
 private:
    
