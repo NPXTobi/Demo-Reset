@@ -15,11 +15,11 @@ void ResetMenu::Logic(u32 hDown, u32 hHeld, touchPosition touch) {
 		Result deres = AM_DeleteAllDemoLaunchInfos();
 		if (R_FAILED(deres))
 		{
-			MSG::Display("Failed");
+			MSG::Display("Failed", 5);
 		}
 		else 
 		{
-			MSG::Display("All done!!!");
+			MSG::Display("All done!!!", 5);
 		}
 	}
 

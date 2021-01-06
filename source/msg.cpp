@@ -1,6 +1,6 @@
 #include "msg.hpp"
 
-void MSG::Display(std::string text) {
+void MSG::Display(std::string text, int time) {
 	Gui::clearTextBufs();
 	C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
 	C2D_TargetClear(Top, C2D_Color32(0, 0, 0, 0));
@@ -12,7 +12,7 @@ void MSG::Display(std::string text) {
 	GFX::DrawBottom();
 	C3D_FrameEnd(0);
 
-	for (int i = 0; i < 60 * 3; i++) {
+	for (int i = 0; i < 60 * time; i++) {
 		gspWaitForVBlank();
 	}
 }

@@ -2,5 +2,5 @@
 
 namespace MSG
 {
-    void Display(std::string text);
+    void Display(std::string text, int time);
 }
