@@ -1,6 +1,6 @@
 
 #include "functions.hpp"
-#include "Init.hpp"
+#include <3ds.h>
 void Reset1(){
 	Result res = AM_DeleteAllDemoLaunchInfos();
 	if (R_FAILED(res))
