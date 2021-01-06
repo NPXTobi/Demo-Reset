@@ -27,7 +27,7 @@ Result app::Initialize(){
 	Gui::init();
 	Gui::loadSheet("romfs:/gfx/sprites.t3x", sprites);
 	cfguInit();
-	mcuInit();
+	//mcuInit();
 	osSetSpeedupEnable(true);
 	acInit();
 	amInit();
@@ -73,7 +73,7 @@ Result app::Exit(){
 	Gui::unloadSheet(sprites);
 	gfxExit();
 	cfguExit();
-	mcuExit();
+	//mcuExit();
 	romfsExit();
 	return 0;
 }
