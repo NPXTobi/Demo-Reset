@@ -6,7 +6,7 @@ extern bool exiting;
 void ResetMenu::Draw(void) const {
     GFX::DrawTop();
 }
-void MainMenu::Logic(u32 hDown, u32 hHeld, touchPosition touch) {
+void ResetMenu::Logic(u32 hDown, u32 hHeld, touchPosition touch) {
 
 
 
