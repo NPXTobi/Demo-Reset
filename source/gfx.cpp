@@ -10,5 +10,5 @@ void GFX::DrawTop(){
 void GFX::DrawBottom(){
     Gui::ScreenDraw(Bottom);
     Gui::DrawSprite(sprites, 2, 0, 0, 1.0f, 1.0f);
-    Gui::DrawSprite(sprites, 3, 0, 0, 0.2f, 0.2f);
+    Gui::DrawSprite(sprites, 3, 0, 0, 0.03f, 0.03f);
 }
