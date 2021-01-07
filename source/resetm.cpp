@@ -20,7 +20,7 @@ void ResetMenu::Logic(u32 hDown, u32 hHeld, touchPosition touch) {
 		}
 		else 
 		{
-			MSG::Display("All done!!!", 5);
+			MSG::Display("All done!!!", 2);
 		}
 	}
 
