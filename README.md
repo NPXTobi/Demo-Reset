@@ -1,4 +1,4 @@
-![Github latest downloads](https://img.shields.io/github/downloads/NPI-D7/Demo-Reset/total.svg)
+![Github latest downloads](https://img.shields.io/github/downloads/NPI-D7/Demo-Reset/total.svg?for-the-badge)
 # Demo-Reset
 This app resets the democounter of the 3ds.
 
