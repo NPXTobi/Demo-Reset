@@ -3,6 +3,8 @@
 This app resets the democounter of the 3ds
 The LED shows whether it was successfully completed or not
 
+# Info
+I'll rewrite it 1[here](https://github.com/NPI-D7/Demo-Reset/)
 
 # Building
 Download the latest version of this: https://github.com/m3diaLib-Team/m3diaLib-CTR
