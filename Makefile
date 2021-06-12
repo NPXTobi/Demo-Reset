@@ -33,17 +33,16 @@ include $(DEVKITARM)/3ds_rules
 #---------------------------------------------------------------------------------
 TARGET          := $(notdir $(CURDIR))
 BUILD           := build
-SOURCES         := $(M3D) source source/menus source/ftp
+SOURCES         := source source/menus source/ftp
 DATA            := data
-INCLUDES        := $(M3D) include include/menus include/ftp
+INCLUDES        := include include/menus include/ftp
 GRAPHICS        := gfx
 ROMFS           := romfs
 GFXBUILD        := $(ROMFS)/gfx
-M3D             := m3d/inc m3d/src
 
 APP_TITLE       := Demo-Reset
 APP_DESCRIPTION := Reset Democount!
-APP_AUTHOR      := NPX-I7
+APP_AUTHOR      := Tobi-D7
 VERSION_MAJOR   := 0
 VERSION_MINOR   := 1
 VERSION_MICRO   := 0
