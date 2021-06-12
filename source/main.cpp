@@ -1,10 +1,10 @@
-#include <m3dia.hpp>
+//#include <m3dia.hpp>
 #include <Init.hpp>
 #include "functions.hpp"
 
 int main() {
  // initialize everything
-    m3d::Applet app;
+   /* m3d::Applet app;
     m3d::Screen scr;
     m3d::Sprite bgrtop("romfs:/gfx/sprites.t3x", 1);
     m3d::Sprite bgrbo("romfs:/gfx/sprites.t3x", 2);
@@ -15,14 +15,14 @@ int main() {
    m3d::Text lred("If the LED is red, there \nwas an Error.");
    m3d::Text lgreen("\n\nIf the LED is green, it's \nall done!");
    lred.setColor(m3d::Color(255, 0, 0));
-   lgreen.setColor(m3d::Color(0, 255, 0));
+   lgreen.setColor(m3d::Color(0, 255, 0));*/
 
     Init();
 
     
 
     // main loop
-    while (app.isRunning()) {
+   /* while (app.isRunning()) {
         // press B to return to the homebrew menu
        
         if (m3d::buttons::buttonPressed(m3d::buttons::Button::Start))
@@ -52,16 +52,21 @@ int main() {
 
 	}
         
-        }
+        }*/
       
        
         
-        scr.drawTop(bgrtop); // draw the sprite
+      /*  scr.drawTop(bgrtop); // draw the sprite
         scr.drawTop(about);
         scr.drawBottom(bgrbo);
         scr.drawBottom(lred);
         scr.drawBottom(lgreen);
-        scr.render(); // render the screen
+        scr.render(); // render the screen*/
+    }
+    while (aptMainloop)
+    {
+
+
     }
 
     return 0;
