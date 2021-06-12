@@ -62,8 +62,8 @@ int main() {
         scr.drawBottom(lred);
         scr.drawBottom(lgreen);
         scr.render(); // render the screen*/
-    }
-    while (aptMainloop)
+   // }
+    while (aptMainLoop())
     {
 
 
