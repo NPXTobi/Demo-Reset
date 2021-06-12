@@ -33,9 +33,9 @@ include $(DEVKITARM)/3ds_rules
 #---------------------------------------------------------------------------------
 TARGET          := $(notdir $(CURDIR))
 BUILD           := build
-SOURCES         := source source/menus source/ftp
+SOURCES         := source
 DATA            := data
-INCLUDES        := include include/menus include/ftp
+INCLUDES        := include
 GRAPHICS        := gfx
 ROMFS           := romfs
 GFXBUILD        := $(ROMFS)/gfx
@@ -77,8 +77,7 @@ CXXFLAGS	:= $(CFLAGS) -fno-rtti -fno-exceptions -std=gnu++11
 ASFLAGS	:=	-g $(ARCH)
 LDFLAGS	=	-specs=3dsx.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
 
-LIBS	:=   
-			-lcitro2d -lcitro3d -lctru 
+LIBS	:=   -lcitro2d -lcitro3d -lctru 
 
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
