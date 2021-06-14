@@ -3,7 +3,7 @@
 #include "functions.hpp"
 
 int main() {
- // initialize everything
+ // initialize not everything
    /* m3d::Applet app;
     m3d::Screen scr;
     m3d::Sprite bgrtop("romfs:/gfx/sprites.t3x", 1);
