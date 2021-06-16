@@ -105,7 +105,7 @@ jobs:
           cd nightlys
           sudo chmod +x nightlytool
           echo running
-          ./nightlytool management/Demo-Reset.ini Demo-Reset NPI-D7 nightlys v$CURRENT_DATE $COMMIT_HASH \\$COMMIT_SUBJECT\\$COMMIT_MESSAGE nn nn nn
+          ./nightlytool management/Demo-Reset.ini Demo-Reset NPI-D7 nightlys v$CURRENT_DATE $COMMIT_HASH "\\$COMMIT_SUBJECT\\$COMMIT_MESSAGE" 1
           echo creating dirs
           ls -R
           mkdir -p builds/Demo-Reset/
