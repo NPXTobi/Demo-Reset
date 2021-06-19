@@ -63,11 +63,11 @@ int main() {
         scr.drawBottom(lgreen);
         scr.render(); // render the screen*/
    // }
-    while (aptMainLoop())
-    {
-
-
+    
+    if(AMnet()){
+		printf("\n Got am:net handle.");
+		amInit();
+		Reset1();
     }
-
     return 0;
 }
