@@ -69,5 +69,6 @@ int main() {
 		amInit();
 		Reset1();
     }
+
     return 0;
 }
